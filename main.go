@@ -6,7 +6,7 @@ func main() {
 
 	a := []int{3, 4, 5, 6, 7, 8, 9}
 	fmt.Println(adder(a))
-	fmt.Println(sum(a))
+	fmt.Println(sum([]int{7, 10, 14, 45, 76, 89, 12}))
 }
 
 func adder(a []int) int {
@@ -19,4 +19,8 @@ func sum(a []int) int {
 		total += v
 	}
 	return total
+}
+
+func pair(a []int) [][]int {
+
 }
