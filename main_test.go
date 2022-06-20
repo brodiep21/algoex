@@ -45,7 +45,7 @@ func TestPair(t *testing.T) {
 		firstpair := pair(arr)
 
 		have := firstpair[0]
-		want := []int{1, 1}
+		want := [][]int{{1, 1}}
 
 		if reflect.DeepEqual(have, want) {
 			t.Errorf("Have %d, want %d", have, want)
