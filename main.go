@@ -27,15 +27,17 @@ func pair(a []int) [][]int {
 	for i := 0; i < len(a)*len(a); i++ {
 		arr = append(arr, []int{})
 	}
-	count := 0
+	count := len(a) - 1
 	for i, v := range a {
 		arr[i] = append(arr[i], v)
+		arr[i] = append(arr[i], v)
 		for _, v2 := range a {
+			arr[count] = append(arr[count], v2)
+			arr[count] = append(arr[count], v2)
+			count++
 			if count >= len(a)*len(a) {
 				break
 			}
-			arr[count] = append(arr[count], v2)
-			count++
 		}
 	}
 	return arr
