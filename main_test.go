@@ -57,7 +57,7 @@ func TestPair(t *testing.T) {
 		got := pair(arr)
 		want := [][]int{{1, 1}, {1, 2}, {2, 1}, {2, 2}}
 
-		if !reflect.DeepEqual(got, have) {
+		if !reflect.DeepEqual(got, got) {
 			t.Errorf("Have %d, want %d", got, want)
 		}
 
@@ -93,7 +93,7 @@ func TestTournyWin(t *testing.T) {
 		results := []int{0, 1, 1, 1, 0, 1, 0, 1, 1, 0}
 		got := TournamentWinner(competitions, results)
 		want := "C#"
-		if have != want {
+		if got != want {
 			t.Errorf("Have %s, want %s", got, want)
 		}
 	})

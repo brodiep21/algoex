@@ -10,6 +10,21 @@ func main() {
 	fmt.Println(pair(a))
 	b := []int{3, 7, 12, 4, 6, 8}
 	fmt.Println(bubsort(b))
+
+	competitions := [][]string{
+		{"HTML", "Java"},
+		{"Java", "Python"},
+		{"Python", "HTML"},
+		{"C#", "Python"},
+		{"Java", "C#"},
+		{"C#", "HTML"},
+		{"SQL", "C#"},
+		{"HTML", "SQL"},
+		{"SQL", "Python"},
+		{"SQL", "Java"},
+	}
+	results := []int{0, 1, 1, 1, 0, 1, 0, 1, 1, 0}
+	fmt.Println(TournamentWinner(competitions, results))
 }
 
 func adder(a []int) int {
@@ -24,6 +39,7 @@ func sum(a []int) int {
 	return total
 }
 
+//solve this problem
 func pair(a []int) [][]int {
 	arr := [][]int{}
 	for i := 0; i < len(a)*len(a); i++ {
@@ -61,22 +77,31 @@ func bubsort(ar []int) []int {
 
 func TournamentWinner(competitions [][]string, results []int) string {
 	teams := make(map[string]int)
-    var bestTeam string
-    teams[bestTeam] = 0 
-    
-    for k, v := range competitions {
-        result := results[k]
 
-        if result == 0 {
-            name, ok := teams[v[result+1]]; ok {
-                teams[name] += 3
-                } 
-            teams[v[result+1]] = 3
-            } else {
-             name, ok := teams[v[result-1]]; ok {
-                teams[name] += 3
-            }
-        }
-    }
-	return ""
+	for k, v := range competitions {
+		result := results[k]
+		winner := ""
+
+		if result == 0 {
+			winner = v[result+1]
+		} else {
+			winner = v[result-1]
+		}
+
+		if score, ok := teams[winner]; ok {
+			teams[winner] = score + 3
+		} else {
+			teams[winner] = 3
+		}
+	}
+
+	var bestTeam string
+	var bestTeamScore int
+	for team, score := range teams {
+		if score > bestTeamScore {
+			bestTeamScore = score
+			bestTeam = team
+		}
+	}
+	return bestTeam
 }
