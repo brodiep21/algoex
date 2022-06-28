@@ -98,3 +98,36 @@ func TestTournyWin(t *testing.T) {
 		}
 	})
 }
+
+func TestConstructChange(t *testing.T) {
+	t.Run("test 1 number", func(t *testing.T) {
+		arr := []int{1}
+
+		got := NonConstructibleChange(arr)
+		want := 2
+
+		if got != want {
+			t.Errorf("Got %d, want %d", got, want)
+		}
+	})
+	t.Run("test 2-number ray", func(t *testing.T) {
+		arr := []int{3, 2}
+
+		got := NonConstructibleChange(arr)
+		want := 1
+
+		if got != want {
+			t.Errorf("Have %d, want %d", got, want)
+		}
+	})
+	t.Run("test large numberset", func(t *testing.T) {
+		arr := []int{5, 6, 1, 1, 2, 3, 4, 9}
+
+		got := NonConstructibleChange(arr)
+		want := 32
+
+		if got != want {
+			t.Errorf("Got %d, want %d", got, want)
+		}
+	})
+}

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 
@@ -104,4 +107,19 @@ func TournamentWinner(competitions [][]string, results []int) string {
 		}
 	}
 	return bestTeam
+}
+
+func NonConstructibleChange(coins []int) int {
+	if len(coins) < 1 {
+		return 1
+	}
+	sort.Ints(coins)
+	smallestChange := 0
+	for i := 0; i < len(coins); i++ {
+		if coins[i] > smallestChange+1 {
+			break
+		}
+		smallestChange += coins[i]
+	}
+	return smallestChange + 1
 }
