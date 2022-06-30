@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	a := []int{3, 4}
+	a := []int{1, 5, 2, 4, 3}
 	fmt.Println(adder(a))
 	fmt.Println(sum([]int{7, 10, 14, 45, 76, 89, 12}))
 	fmt.Println(pair(a))
@@ -28,6 +28,7 @@ func main() {
 	}
 	results := []int{0, 1, 1, 1, 0, 1, 0, 1, 1, 0}
 	fmt.Println(TournamentWinner(competitions, results))
+	MinimumWaitingTime(a)
 }
 
 func adder(a []int) int {
@@ -46,17 +47,18 @@ func sum(a []int) int {
 func pair(a []int) [][]int {
 	arr := [][]int{}
 	size := len(a) * len(a)
-	counter := 0
+	counter := 1
 	for i := 0; i < size; i++ {
 		arr = append(arr, []int{})
 	}
 	for i := 0; i < len(a); i++ {
+		arr[counter-1] = append(arr[counter-1], a[i])
 		for j := 0; j < len(a); j++ {
 			arr[j] = append(arr[j], a[i])
 		}
 		counter++
 		if counter < size {
-			arr[counter] = append(arr[counter], a[i])
+			arr[counter] = append(arr[counter-1], a[i])
 		}
 	}
 	return arr
@@ -120,4 +122,23 @@ func NonConstructibleChange(coins []int) int {
 		smallestChange += coins[i]
 	}
 	return smallestChange + 1
+}
+
+func MinimumWaitingTime(queries []int) int {
+	endpoint := len(queries)
+	sort.Ints(queries)
+
+	if endpoint == 1 {
+		return 0
+	} else if endpoint == 2 {
+		return queries[0]
+	}
+	time := 0
+	for i := 0; i <= endpoint; i++ {
+		if i > 0 {
+			time += queries[i-1]
+			fmt.Println(time)
+		}
+	}
+	return time
 }

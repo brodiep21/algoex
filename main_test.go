@@ -40,7 +40,6 @@ func TestSum(t *testing.T) {
 }
 
 func TestPair(t *testing.T) {
-	t.Skip()
 	arr := []int{1, 2}
 	t.Run("test the first pair in the first slice", func(t *testing.T) {
 		firstpair := pair(arr)
@@ -52,7 +51,6 @@ func TestPair(t *testing.T) {
 			t.Errorf("Have %d, want %d", got, want)
 		}
 	})
-	t.Skip()
 	t.Run("test all of the slices match up", func(t *testing.T) {
 		got := pair(arr)
 		want := [][]int{{1, 1}, {1, 2}, {2, 1}, {2, 2}}
@@ -125,6 +123,39 @@ func TestConstructChange(t *testing.T) {
 
 		got := NonConstructibleChange(arr)
 		want := 32
+
+		if got != want {
+			t.Errorf("Got %d, want %d", got, want)
+		}
+	})
+}
+
+func TestMinWaitingTime(t *testing.T) {
+	t.Run("test array with 1 element", func(t *testing.T) {
+		arr := []int{4}
+
+		got := MinimumWaitingTime(arr)
+		want := 0
+
+		if got != want {
+			t.Errorf("Got %d, want %d", got, want)
+		}
+	})
+	t.Run("test a large array", func(t *testing.T) {
+		arr := []int{1, 5, 2, 4, 3}
+
+		got := MinimumWaitingTime(arr)
+		want := 20
+
+		if got != want {
+			t.Errorf("Got %d, want %d", got, want)
+		}
+	})
+	t.Run("test a 2 element array", func(t *testing.T) {
+		arr := []int{3, 1}
+
+		got := MinimumWaitingTime(arr)
+		want := 1
 
 		if got != want {
 			t.Errorf("Got %d, want %d", got, want)
