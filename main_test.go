@@ -162,3 +162,28 @@ func TestMinWaitingTime(t *testing.T) {
 		}
 	})
 }
+
+func TestClassPhotos(t *testing.T) {
+	t.Run("test passing case for redshirts", func(t *testing.T) {
+		redshirt := []int{6, 9, 2, 4, 5}
+		blueshirt := []int{5, 8, 1, 3, 4}
+
+		got := ClassPhotos(redshirt, blueshirt)
+		want := true
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
+	t.Run("test passing case for blueshirts", func(t *testing.T) {
+		redshirt := []int{5, 8, 1, 3, 4}
+		blueshirt := []int{6, 9, 2, 4, 5}
+
+		got := ClassPhotos(redshirt, blueshirt)
+		want := true
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
+}

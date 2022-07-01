@@ -7,9 +7,7 @@ import (
 
 func main() {
 
-	a := []int{1, 5, 2, 4, 3}
-	fmt.Println(adder(a))
-	fmt.Println(sum([]int{7, 10, 14, 45, 76, 89, 12}))
+	a := []int{1, 2, 4, 3, 5}
 	fmt.Println(pair(a))
 	b := []int{3, 7, 12, 4, 6, 8}
 	fmt.Println(bubsort(b))
@@ -28,7 +26,7 @@ func main() {
 	}
 	results := []int{0, 1, 1, 1, 0, 1, 0, 1, 1, 0}
 	fmt.Println(TournamentWinner(competitions, results))
-	MinimumWaitingTime(a)
+	fmt.Println(MinimumWaitingTime(a))
 }
 
 func adder(a []int) int {
@@ -125,20 +123,27 @@ func NonConstructibleChange(coins []int) int {
 }
 
 func MinimumWaitingTime(queries []int) int {
-	endpoint := len(queries)
 	sort.Ints(queries)
-
-	if endpoint == 1 {
-		return 0
-	} else if endpoint == 2 {
-		return queries[0]
-	}
 	time := 0
-	for i := 0; i <= endpoint; i++ {
-		if i > 0 {
-			time += queries[i-1]
-			fmt.Println(time)
-		}
+	totalWaitTime := 0
+
+	for i := 0; i < len(queries)-1; i++ {
+		time += queries[i]
+		totalWaitTime += time
 	}
-	return time
+	return totalWaitTime
+}
+
+func ClassPhotos(redShirtHeights []int, blueShirtHeights []int) bool {
+	red := redShirtHeights[0]
+	blue := blueShirtHeights[0]
+
+	for k, v := range redShirtHeights {
+		results := blueShirtHeights[k]
+		if red > blue {
+
+		}
+
+	}
+	return false
 }
