@@ -135,15 +135,31 @@ func MinimumWaitingTime(queries []int) int {
 }
 
 func ClassPhotos(redShirtHeights []int, blueShirtHeights []int) bool {
-	red := redShirtHeights[0]
-	blue := blueShirtHeights[0]
-
-	for k, v := range redShirtHeights {
-		results := blueShirtHeights[k]
-		if red > blue {
-
-		}
-
+	sort.Ints(redShirtHeights)
+	sort.Ints(blueShirtHeights)
+	classPhotoWorks := false
+	if redShirtHeights[0] > blueShirtHeights[0] {
+		classPhotoWorks = checkBackRow(redShirtHeights, blueShirtHeights)
+		return classPhotoWorks
 	}
-	return false
+	classPhotoWorks = checkBackRow(blueShirtHeights, redShirtHeights)
+
+	return classPhotoWorks
+}
+
+func checkBackRow(backRow []int, frontRow []int) bool {
+	photoWorks := false
+	result := 0
+
+	for k, v := range backRow {
+		result = frontRow[k]
+
+		if v > result {
+			photoWorks = true
+			continue
+		}
+		photoWorks = false
+		break
+	}
+	return photoWorks
 }

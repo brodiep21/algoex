@@ -186,4 +186,15 @@ func TestClassPhotos(t *testing.T) {
 			t.Errorf("Got %v, want %v", got, want)
 		}
 	})
+	t.Run("test an array that MUST be in ascending order to pass", func(t *testing.t) {
+		redshirt := []int{5, 6}
+		blueshirt := []int{5, 4}
+
+		got := ClassPhotos(redshirt, blueshirt)
+		want := true
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
 }
