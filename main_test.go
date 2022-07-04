@@ -215,7 +215,7 @@ func TestTandemBicycle(t *testing.T) {
 	t.Run("test Large array for true (fastest)", func(t *testing.T) {
 		redshirts := []int{1, 2, 1, 9, 12, 3, 1, 54, 21, 231, 32, 1}
 		blueshirts := []int{3, 3, 4, 6, 1, 2, 5, 6, 34, 256, 123, 32}
-		fastest := false
+		fastest := true
 
 		want := 816
 		got := TandemBicycle(redshirts, blueshirts, fastest)

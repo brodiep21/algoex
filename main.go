@@ -12,8 +12,6 @@ func main() {
 	b := []int{3, 7, 12, 4, 6, 8}
 	fmt.Println(bubsort(b))
 
-	fmt.Println(TandemBicycle(a, b, true))
-
 	competitions := [][]string{
 		{"HTML", "Java"},
 		{"Java", "Python"},
@@ -196,12 +194,11 @@ func fastestSort(arr1 []int, arr2 []int) int {
 	totalSpeed := 0
 	for k, v := range arr1 {
 		comparison := arr2[k]
-		fmt.Println(comparison, v)
 		if v > comparison {
 			totalSpeed += v
+		} else {
+			totalSpeed += comparison
 		}
-		totalSpeed += comparison
-		fmt.Println(totalSpeed)
 	}
 	return totalSpeed
 }
@@ -214,9 +211,10 @@ func slowestSort(arr1 []int, arr2 []int) int {
 	for k, v := range arr1 {
 		comparison := arr2[k]
 		if v > comparison {
+			totalSpeed += v
+		} else {
 			totalSpeed += comparison
 		}
-		totalSpeed += v
 	}
 	return totalSpeed
 }
