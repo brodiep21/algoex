@@ -12,6 +12,8 @@ func main() {
 	b := []int{3, 7, 12, 4, 6, 8}
 	fmt.Println(bubsort(b))
 
+	fmt.Println(TandemBicycle(a, b, true))
+
 	competitions := [][]string{
 		{"HTML", "Java"},
 		{"Java", "Python"},
@@ -67,6 +69,20 @@ func bubsort(ar []int) []int {
 	for j := 0; j < len(ar); j++ {
 		for i := 0; i < len(ar)-1; i++ {
 			if ar[i] > ar[i+1] {
+				change := ar[i]
+				ar[i] = ar[i+1]
+				ar[i+1] = change
+			}
+		}
+	}
+	return ar
+}
+
+func revbubsort(ar []int) []int {
+	//switch elements, one-time pass, full swap
+	for j := 0; j < len(ar); j++ {
+		for i := 0; i < len(ar)-1; i++ {
+			if ar[i] < ar[i+1] {
 				change := ar[i]
 				ar[i] = ar[i+1]
 				ar[i+1] = change
@@ -162,4 +178,45 @@ func checkBackRow(backRow []int, frontRow []int) bool {
 		break
 	}
 	return photoWorks
+}
+
+func TandemBicycle(redShirtSpeeds []int, blueShirtSpeeds []int, fastest bool) int {
+
+	if fastest {
+		return fastestSort(redShirtSpeeds, blueShirtSpeeds)
+	}
+	return slowestSort(redShirtSpeeds, blueShirtSpeeds)
+
+}
+
+func fastestSort(arr1 []int, arr2 []int) int {
+	bubsort(arr1)
+	revbubsort(arr2)
+
+	totalSpeed := 0
+	for k, v := range arr1 {
+		comparison := arr2[k]
+		fmt.Println(comparison, v)
+		if v > comparison {
+			totalSpeed += v
+		}
+		totalSpeed += comparison
+		fmt.Println(totalSpeed)
+	}
+	return totalSpeed
+}
+
+func slowestSort(arr1 []int, arr2 []int) int {
+	bubsort(arr1)
+	bubsort(arr2)
+
+	totalSpeed := 0
+	for k, v := range arr1 {
+		comparison := arr2[k]
+		if v > comparison {
+			totalSpeed += comparison
+		}
+		totalSpeed += v
+	}
+	return totalSpeed
 }

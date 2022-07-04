@@ -186,7 +186,7 @@ func TestClassPhotos(t *testing.T) {
 			t.Errorf("Got %v, want %v", got, want)
 		}
 	})
-	t.Run("test an array that MUST be in ascending order to pass", func(t *testing.t) {
+	t.Run("test an array that MUST be in ascending order to pass", func(t *testing.T) {
 		redshirt := []int{5, 6}
 		blueshirt := []int{5, 4}
 
@@ -195,6 +195,69 @@ func TestClassPhotos(t *testing.T) {
 
 		if got != want {
 			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
+}
+
+func TestTandemBicycle(t *testing.T) {
+	t.Run("test Large array for false (slowest)", func(t *testing.T) {
+		redshirts := []int{1, 2, 1, 9, 12, 3, 1, 54, 21, 231, 32, 1}
+		blueshirts := []int{3, 3, 4, 6, 1, 2, 5, 6, 34, 256, 123, 32}
+		fastest := false
+
+		want := 484
+		got := TandemBicycle(redshirts, blueshirts, fastest)
+
+		if want != got {
+			t.Errorf("Wanted %d, got %d", want, got)
+		}
+	})
+	t.Run("test Large array for true (fastest)", func(t *testing.T) {
+		redshirts := []int{1, 2, 1, 9, 12, 3, 1, 54, 21, 231, 32, 1}
+		blueshirts := []int{3, 3, 4, 6, 1, 2, 5, 6, 34, 256, 123, 32}
+		fastest := false
+
+		want := 816
+		got := TandemBicycle(redshirts, blueshirts, fastest)
+
+		if want != got {
+			t.Errorf("Wanted %d, got %d", want, got)
+		}
+	})
+	t.Run("test small array", func(t *testing.T) {
+		redshirts := []int{6}
+		blueshirts := []int{1}
+		fastest := true
+
+		want := 6
+		got := TandemBicycle(redshirts, blueshirts, fastest)
+
+		if want != got {
+			t.Errorf("Wanted %d, got %d", want, got)
+		}
+	})
+	t.Run("test zero element arrays for true", func(t *testing.T) {
+		redshirts := []int{}
+		blueshirts := []int{}
+		fastest := true
+
+		want := 0
+		got := TandemBicycle(redshirts, blueshirts, fastest)
+
+		if want != got {
+			t.Errorf("Wanted %d, got %d", want, got)
+		}
+	})
+	t.Run("test zero element arrays for false", func(t *testing.T) {
+		redshirts := []int{}
+		blueshirts := []int{}
+		fastest := false
+
+		want := 0
+		got := TandemBicycle(redshirts, blueshirts, fastest)
+
+		if want != got {
+			t.Errorf("Wanted %d, got %d", want, got)
 		}
 	})
 }
