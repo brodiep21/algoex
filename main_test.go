@@ -261,3 +261,41 @@ func TestTandemBicycle(t *testing.T) {
 		}
 	})
 }
+
+func TestGetNthfib(t *testing.T) {
+	t.Run("Test a high number in the sequence", func(t *testing.T) {
+		sequenceNum := 18
+
+		want := 1597
+		got := GetNthFib(sequenceNum)
+
+		if got != want {
+			t.Errorf("Want %d, got %d", want, got)
+		}
+	})
+	t.Run("Test a low number in the sequence", func(t *testing.T) {
+		sequenceNum := 6
+
+		want := 5
+		got := GetNthFib(sequenceNum)
+
+		if got != want {
+			t.Errorf("Want %d, got %d", want, got)
+		}
+	})
+	t.Run("Test a medium number in the sequence", func(t *testing.T) {
+		sequenceNum := 9
+
+		want := 21
+		got := GetNthFib(sequenceNum)
+
+		if got != want {
+			t.Errorf("Want %d, got %d", want, got)
+		}
+	})
+}
+func TestProductSum(t *testing.T) {
+	t.Run("test a small array with 1 inner array", func(t *testing.T) {
+
+	})
+}

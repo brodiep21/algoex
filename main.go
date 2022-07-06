@@ -226,12 +226,20 @@ func GetNthFib(n int) int {
 	fib[1] = 1
 	fib[2] = 1
 
-	fmt.Println(fib)
 	if n <= 2 {
 		return fib[n-1]
 	}
 	for i := 3; i < n; i++ {
-		fib[i] = (fib[n-1] + fib[n-2])
+		fib[i] = (fib[i-1] + fib[i-2])
 	}
 	return fib[n-1]
+}
+
+type SpecialArray []interface{}
+
+// Tip: Each element of `array` can either be cast
+// to `SpecialArray` or `int`.
+func ProductSum(array []interface{}) int {
+
+	return -1
 }
