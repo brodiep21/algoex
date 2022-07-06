@@ -27,6 +27,7 @@ func main() {
 	results := []int{0, 1, 1, 1, 0, 1, 0, 1, 1, 0}
 	fmt.Println(TournamentWinner(competitions, results))
 	fmt.Println(MinimumWaitingTime(a))
+	fmt.Println(GetNthFib(5))
 }
 
 func adder(a []int) int {
@@ -217,4 +218,20 @@ func slowestSort(arr1 []int, arr2 []int) int {
 		}
 	}
 	return totalSpeed
+}
+
+func GetNthFib(n int) int {
+	fib := make([]int, n)
+	fib[0] = 0
+	fib[1] = 1
+	fib[2] = 1
+
+	fmt.Println(fib)
+	if n <= 2 {
+		return fib[n-1]
+	}
+	for i := 3; i < n; i++ {
+		fib[i] = (fib[n-1] + fib[n-2])
+	}
+	return fib[n-1]
 }
