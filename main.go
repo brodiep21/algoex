@@ -29,6 +29,7 @@ func main() {
 	fmt.Println(MinimumWaitingTime(a))
 	fmt.Println(GetNthFib(5))
 	fmt.Println(InsertionSort(b))
+	fmt.Println(IsPalindrome("radar"))
 }
 
 func adder(a []int) int {
@@ -261,4 +262,23 @@ func InsertionSort(array []int) []int {
 		array[position+1] = temp
 	}
 	return array
+}
+
+func IsPalindrome(str string) bool {
+	if len(str) == 1 {
+		return true
+	}
+	for i := 0; i < len(str); i++ {
+		for j := len(str) - 1; j > 0; j-- {
+			if i == j {
+				return true
+			}
+			if str[i] == str[j] {
+				continue
+			} else {
+				return false
+			}
+		}
+	}
+	return false
 }

@@ -308,6 +308,29 @@ func TestInsertionSort(t *testing.T) {
 	got := InsertionSort(arr)
 
 	if !reflect.DeepEqual(want, got) {
-		t.Errorf("Want %d, got %d", want, got)
+		t.Errorf("Got %d, want %d", got, want)
 	}
+}
+
+func TestIsPalindrome(t *testing.T) {
+	t.Run("Test a valid palindrome", func(t *testing.T) {
+		str := "radar"
+
+		want := true
+		got := IsPalindrome(str)
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
+	t.Run("Test an invalid Palindrome", func(t *testing.T) {
+		str := "Arnold"
+
+		want := false
+		got := IsPalindrome(str)
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
 }
