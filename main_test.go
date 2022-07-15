@@ -294,8 +294,20 @@ func TestGetNthfib(t *testing.T) {
 		}
 	})
 }
-func TestProductSum(t *testing.T) {
-	t.Run("test a small array with 1 inner array", func(t *testing.T) {
 
-	})
+// func TestProductSum(t *testing.T) {
+// 	t.Run("test a small array with 1 inner array", func(t *testing.T) {
+
+// 	})
+// }
+
+func TestInsertionSort(t *testing.T) {
+	arr := []int{4, 3, 7, 10, 8, 12, 2, 1}
+
+	want := []int{1, 2, 3, 4, 7, 8, 10, 12}
+	got := InsertionSort(arr)
+
+	if !reflect.DeepEqual(want, got) {
+		t.Errorf("Want %d, got %d", want, got)
+	}
 }

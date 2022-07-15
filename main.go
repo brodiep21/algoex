@@ -28,6 +28,7 @@ func main() {
 	fmt.Println(TournamentWinner(competitions, results))
 	fmt.Println(MinimumWaitingTime(a))
 	fmt.Println(GetNthFib(5))
+	fmt.Println(InsertionSort(b))
 }
 
 func adder(a []int) int {
@@ -235,11 +236,29 @@ func GetNthFib(n int) int {
 	return fib[n-1]
 }
 
-type SpecialArray []interface{}
+// type SpecialArray []interface{}
 
-// Tip: Each element of `array` can either be cast
-// to `SpecialArray` or `int`.
-func ProductSum(array []interface{}) int {
+// // Tip: Each element of `array` can either be cast
+// // to `SpecialArray` or `int`.
+// func ProductSum(array []interface{}) int {
 
-	return -1
+// 	return -1
+// }
+
+func InsertionSort(array []int) []int {
+	for i := 1; i < len(array); i++ {
+		temp := array[i]
+		position := i - 1
+		for position >= 0 {
+			if array[position] > temp {
+				array[position+1] = array[position]
+				position -= 1
+			} else {
+				break
+			}
+
+		}
+		array[position+1] = temp
+	}
+	return array
 }
