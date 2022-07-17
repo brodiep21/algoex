@@ -265,20 +265,37 @@ func InsertionSort(array []int) []int {
 }
 
 func IsPalindrome(str string) bool {
-	if len(str) == 1 {
+	palind := ""
+
+	for i := len(str) - 1; i >= 0; i-- {
+		palind += string(str[i])
+	}
+	if palind == str {
 		return true
 	}
-	for i := 0; i < len(str); i++ {
-		for j := len(str) - 1; j > 0; j-- {
-			if i == j {
-				return true
-			}
-			if str[i] == str[j] {
-				continue
-			} else {
-				return false
-			}
-		}
-	}
 	return false
+}
+
+// func IsPalindrome(str string) bool {
+// 	if len(str) == 1 {
+// 		return true
+// 	}
+// 	for i := 0; i < len(str); i++ {
+// 		for j := len(str) - 1; j > 0; j-- {
+// 			if i == j {
+// 				return true
+// 			}
+// 			if str[i] == str[j] {
+// 				continue
+// 			} else {
+// 				return false
+// 			}
+// 		}
+// 	}
+// 	return false
+// }
+
+func CaesarCipherEncryptor(str string, key int) string {
+	// Write your code here.
+	return ""
 }

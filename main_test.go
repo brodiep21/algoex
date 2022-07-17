@@ -333,4 +333,40 @@ func TestIsPalindrome(t *testing.T) {
 			t.Errorf("Got %v, want %v", got, want)
 		}
 	})
+	t.Run("Test a one letter word", func(t *testing.T) {
+		str := "a"
+
+		want := true
+		got := IsPalindrome(str)
+
+		if got != want {
+			t.Errorf("Got %v, want %v", got, want)
+		}
+	})
+
+}
+
+func TestCaesarCipher(t *testing.T) {
+	t.Run("testing a large change in keys which wrap the alphabet", func(t *testing.T) {
+		str := "iwufqnkqkqoolxzzlzihqfm"
+		key := 25
+
+		want := "hvtepmjpjpnnkwyykyhgpel"
+		got := CaesarCipherEncryptor(str, key)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+	t.Run("testing a small string with low key change", func(t *testing.T) {
+		str := "adc"
+		key := 2
+
+		want := "cde"
+		got := CaesarCipherEncryptor(str, key)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
 }
