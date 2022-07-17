@@ -359,7 +359,7 @@ func TestCaesarCipher(t *testing.T) {
 		}
 	})
 	t.Run("testing a small string with low key change", func(t *testing.T) {
-		str := "adc"
+		str := "abc"
 		key := 2
 
 		want := "cde"
@@ -369,4 +369,62 @@ func TestCaesarCipher(t *testing.T) {
 			t.Errorf("Got %s, want %s", got, want)
 		}
 	})
+	t.Run("testing a high key value that wraps multiple times", func(t *testing.T) {
+		str := "abc"
+		key := 57
+
+		want := "fgh"
+		got := CaesarCipherEncryptor(str, key)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+}
+
+func TestRunLengthEncoding(t *testing.T) {
+	t.Run("Test lowercase and uppercase characters", func(t *testing.T) {
+		str := "aA"
+
+		want := "1a1A"
+		got := RunLengthEncoding(str)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+	t.Run("Test a long string with all Uppercase characters", func(t *testing.T) {
+
+		str := "AAAAAAAAAAAAABBCCCCDD"
+
+		want := "9A4A2B4C2D"
+		got := RunLengthEncoding(str)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+	t.Run("Test a long string with unique characters", func(t *testing.T) {
+
+		str := "************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA"
+
+		want := "9*3*7^6$7%6!9A9A2A"
+		got := RunLengthEncoding(str)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+	t.Run("Test a long string with unique characters", func(t *testing.T) {
+
+		str := "........______=========AAAA   AAABBBB   BBB"
+
+		want := "8.6_9=4A3 3A4B3 3B"
+		got := RunLengthEncoding(str)
+
+		if got != want {
+			t.Errorf("Got %s, want %s", got, want)
+		}
+	})
+
 }

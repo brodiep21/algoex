@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
 )
 
 func main() {
@@ -30,6 +31,8 @@ func main() {
 	fmt.Println(GetNthFib(5))
 	fmt.Println(InsertionSort(b))
 	fmt.Println(IsPalindrome("radar"))
+	fmt.Println(CaesarCipherEncryptor("abc", 2))
+	fmt.Println(RunLengthEncoding("AAAAAAAAAAAAABBCCCCDD"))
 }
 
 func adder(a []int) int {
@@ -295,7 +298,62 @@ func IsPalindrome(str string) bool {
 // 	return false
 // }
 
+// func CaesarCipherEncryptor(str string, key int) string {
+// 	newstr := ""
+// 	for _, v := range str {
+// 		for i := 1; i <= key; i++ {
+// 			v++
+// 			if v > 122 {
+// 				v = 97
+// 			}
+// 		}
+// 		newstr += string(v)
+// 	}
+// 	return newstr
+// }
+
 func CaesarCipherEncryptor(str string, key int) string {
-	// Write your code here.
-	return ""
+	newstr := ""
+	key = key % 26
+	for _, v := range str {
+		v += int32(key)
+		if v > 122 {
+			v = 96 + (v % 122)
+		}
+		newstr += string(v)
+	}
+	return newstr
+}
+
+//need to refactor
+func RunLengthEncoding(str string) string {
+	newstr := ""
+	storedval := rune(str[0])
+	counter := 0
+	for k, v := range str {
+		if v != storedval && counter == 0 {
+			storedval = v
+			counter++
+			continue
+		}
+		if v == storedval {
+			counter++
+			if k == len(str)-1 {
+				newstr += strconv.Itoa(counter) + string(storedval)
+			}
+			if counter == 9 {
+				newstr += strconv.Itoa(counter) + string(storedval)
+				counter = 0
+				continue
+			}
+			continue
+		}
+		newstr += strconv.Itoa(counter) + string(storedval)
+		storedval = v
+		counter = 1
+		if k == len(str)-1 {
+			newstr += strconv.Itoa(counter) + string(v)
+		}
+	}
+	return newstr
 }
