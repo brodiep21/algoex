@@ -240,15 +240,6 @@ func GetNthFib(n int) int {
 	return fib[n-1]
 }
 
-// type SpecialArray []interface{}
-
-// // Tip: Each element of `array` can either be cast
-// // to `SpecialArray` or `int`.
-// func ProductSum(array []interface{}) int {
-
-// 	return -1
-// }
-
 func InsertionSort(array []int) []int {
 	for i := 1; i < len(array); i++ {
 		temp := array[i]
@@ -356,4 +347,66 @@ func RunLengthEncoding(str string) string {
 		}
 	}
 	return newstr
+}
+
+func GenerateDocument(characters string, document string) bool {
+	if document == "" {
+		return true
+	}
+
+	var savedvals = make(map[string]int)
+	for _, v := range characters {
+		if letter, ok := savedvals[string(v)]; ok {
+			savedvals[string(v)] = letter + 1
+		} else {
+			savedvals[string(v)] = 1
+		}
+	}
+	for _, v2 := range document {
+		if letter, ok := savedvals[string(v2)]; ok {
+			if letter >= 1 {
+				savedvals[string(v2)] = letter - 1
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+func FirstNonRepeatingCharacter(str string) int {
+	var charMap = make(map[string]int)
+	if len(str) == 0 {
+		return -1
+	}
+
+	for _, v := range str {
+		if _, ok := charMap[string(v)]; ok {
+			charMap[string(v)] += 1
+		} else {
+			charMap[string(v)] = 1
+		}
+	}
+	for i := 0; i < len(str); i++ {
+		if num, ok := charMap[string(str[i])]; ok {
+			if num == 1 {
+				return i
+			} else {
+				continue
+			}
+		}
+	}
+
+	return -1
+}
+
+type SpecialArray []interface{}
+
+// Tip: Each element of `array` can either be cast
+// to `SpecialArray` or `int`.
+func ProductSum(array []interface{}) int {
+
+	return -1
 }
