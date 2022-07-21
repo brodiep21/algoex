@@ -534,3 +534,21 @@ func TestProductSum(t *testing.T) {
 		}
 	})
 }
+
+func TestThreeNumberSum(t *testing.T) {
+	t.Run("Test functional return with attainable target", func(t *testing.T) {
+		arr := []int{12, 3, 1, 2, -6, 5, -8, 6}
+		target := 0
+
+		want := [][]int{
+			[]int{-8, 2, 6},
+			[]int{-8, 3, 5},
+			[]int{-6, 1, 5},
+		}
+		got := ThreeNumberSum(arr, target)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v ", want, got)
+		}
+	})
+}

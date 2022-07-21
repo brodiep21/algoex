@@ -10,7 +10,7 @@ func main() {
 
 	a := []int{1, 2, 4, 3, 5}
 	fmt.Println(pair(a))
-	b := []int{3, 7, 12, 4, 6, 8}
+	b := []int{12, 3, 1, 2, -6, 5, -8, 6}
 	fmt.Println(bubsort(b))
 
 	competitions := [][]string{
@@ -33,6 +33,7 @@ func main() {
 	fmt.Println(IsPalindrome("radar"))
 	fmt.Println(CaesarCipherEncryptor("abc", 2))
 	fmt.Println(RunLengthEncoding("AAAAAAAAAAAAABBCCCCDD"))
+	fmt.Println(ThreeNumberSum(b, 0))
 }
 
 func adder(a []int) int {
@@ -407,6 +408,49 @@ type SpecialArray []interface{}
 // Tip: Each element of `array` can either be cast
 // to `SpecialArray` or `int`.
 func ProductSum(array []interface{}) int {
+	return productSum1(array, 1)
+}
 
-	return -1
+func productSum1(array []interface{}, depth int) int {
+
+	result := 0
+
+	for i := 0; i < len(array); i++ {
+		val, ok := array[i].(int)
+		if ok {
+			result += val
+		} else {
+			sum := productSum1(array[i].(SpecialArray), depth+1)
+			result += ((depth + 1) * sum)
+		}
+	}
+	return result
+}
+
+func ThreeNumberSum(array []int, target int) [][]int {
+	sort.Ints(array)
+	counter := 0
+	var arr = make([][]int, 3)
+
+	for i := 0; i < len(array); i++ {
+		stored := i + 1
+		if counter == 2 {
+			break
+		}
+		for j := stored + 1; j < len(array); j++ {
+			if counter == 2 {
+				break
+			}
+			if array[i]+array[stored]+array[j] == target {
+				arr[counter] = append(arr[counter], array[i])
+				arr[counter] = append(arr[counter], array[stored])
+				arr[counter] = append(arr[counter], array[j])
+				counter++
+			}
+			if j == len(array)-1 {
+				stored++
+			}
+		}
+	}
+	return arr
 }
