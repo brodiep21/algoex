@@ -551,4 +551,15 @@ func TestThreeNumberSum(t *testing.T) {
 			t.Errorf("Wanted %v, got %v ", want, got)
 		}
 	})
+	t.Run("Test return with no attainable target", func(t *testing.T) {
+		arr := []int{60, 12, 5, -12, -10, 4, 6}
+		target := 2
+
+		want := [][]int{}
+		got := ThreeNumberSum(arr, target)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
 }
