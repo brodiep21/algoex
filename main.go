@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 )
@@ -447,6 +448,21 @@ func ThreeNumberSum(array []int, target int) [][]int {
 		}
 		if basenum == len(array)-2 {
 			break
+		}
+	}
+	return arr
+}
+func SmallestDifference(array1, array2 []int) []int {
+	smallestdif := 100000000
+	arr := []int{0, 0}
+	for i := 0; i < len(array1); i++ {
+		for j := 0; j < len(array2); j++ {
+			arrsum := math.Abs(float64(array1[i]) - float64(array2[j]))
+			if int(arrsum) < smallestdif {
+				smallestdif = int(arrsum)
+				arr[0] = array1[i]
+				arr[1] = array2[j]
+			}
 		}
 	}
 	return arr

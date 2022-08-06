@@ -584,3 +584,28 @@ func TestThreeNumberSum(t *testing.T) {
 		}
 	})
 }
+
+func TestSmallestDifference(t *testing.T) {
+	t.Run("Large numbers in one array and small numbers in the other", func(t *testing.T) {
+		arr1 := []int{10, 0, 20, 25, 2200}
+		arr2 := []int{1005, 1006, 1014, 1032, 1031}
+
+		want := []int{25, 1005}
+		got := SmallestDifference(arr1, arr2)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+	t.Run("Test a small set of numbers in both arrays", func(t *testing.T) {
+		arr1 := []int{3, 20}
+		arr2 := []int{21, 5}
+
+		want := []int{20, 21}
+		got := SmallestDifference(arr1, arr2)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+}
