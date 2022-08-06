@@ -429,30 +429,25 @@ func productSum1(array []interface{}, depth int) int {
 
 func ThreeNumberSum(array []int, target int) [][]int {
 	sort.Ints(array)
-	var arr = make([][]int, 3)
+	arr := [][]int{}
 
 	basenum := 0
 	storedval := 1
-	counter := 0
 
-	for j := 0; j < len(array); j++ {
+	for {
 		for i := storedval + 1; i < len(array); i++ {
-			if counter == 3 {
-				return arr
-			}
 			if array[basenum]+array[storedval]+array[i] == target {
-				arr[counter] = append(arr[counter], array[basenum])
-				arr[counter] = append(arr[counter], array[storedval])
-				arr[counter] = append(arr[counter], array[i])
-				counter++
+				arr = append(arr, []int{array[basenum], array[storedval], array[i]})
 			}
 		}
 		storedval++
-		if storedval == len(array) {
+		if storedval == len(array)-1 {
 			basenum++
 			storedval = basenum + 1
 		}
-		//
+		if basenum == len(array)-2 {
+			break
+		}
 	}
 	return arr
 }

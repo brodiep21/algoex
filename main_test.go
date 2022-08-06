@@ -562,4 +562,25 @@ func TestThreeNumberSum(t *testing.T) {
 			t.Errorf("Wanted %v, got %v", want, got)
 		}
 	})
+
+	t.Run("Test a large array with more than 4 conditions", func(t *testing.T) {
+		arr := []int{12, 3, 1, 2, -6, 5, 0, -8, -1, 6, -5}
+		target := 0
+
+		got := ThreeNumberSum(arr, target)
+		want := [][]int{
+			[]int{-8, 2, 6},
+			[]int{-8, 3, 5},
+			[]int{-6, 0, 6},
+			[]int{-6, 1, 5},
+			[]int{-5, -1, 6},
+			[]int{-5, 0, 5},
+			[]int{-5, 2, 3},
+			[]int{-1, 0, 1},
+		}
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
 }
