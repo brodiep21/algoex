@@ -467,3 +467,33 @@ func SmallestDifference(array1, array2 []int) []int {
 	}
 	return arr
 }
+
+func MoveElementToEnd(array []int, toMove int) []int {
+	if len(array) == 0 {
+		return []int{}
+	}
+	left := 0
+	right := len(array) - 1
+	for {
+		fmt.Println(left, right)
+		if array[right] == toMove {
+			right--
+		}
+		if array[left] != toMove {
+			left++
+		}
+		if array[left] == toMove && array[right] == toMove {
+			right--
+		}
+		if array[left] == toMove && array[right] != toMove {
+			array[left] = array[right]
+			array[right] = toMove
+			left++
+			right--
+		}
+		if left >= right || right == left+1 {
+			return array
+		}
+
+	}
+}

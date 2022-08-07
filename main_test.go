@@ -586,7 +586,7 @@ func TestThreeNumberSum(t *testing.T) {
 }
 
 func TestSmallestDifference(t *testing.T) {
-	t.Run("Large numbers in one array and small numbers in the other", func(t *testing.T) {
+	t.Run("Array1 of small numbers - array2 with large numbers", func(t *testing.T) {
 		arr1 := []int{10, 0, 20, 25, 2200}
 		arr2 := []int{1005, 1006, 1014, 1032, 1031}
 
@@ -603,6 +603,53 @@ func TestSmallestDifference(t *testing.T) {
 
 		want := []int{20, 21}
 		got := SmallestDifference(arr1, arr2)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+}
+
+func TestMoveElementToEnd(t *testing.T) {
+	t.Run("Empty array return", func(t *testing.T) {
+		arr := []int{}
+		toMove := 3
+
+		want := []int{}
+		got := MoveElementToEnd(arr, toMove)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+	t.Run("An array without a moveable number", func(t *testing.T) {
+		arr := []int{1, 2, 4, 5, 6}
+		toMove := 3
+
+		want := []int{1, 2, 4, 5, 6}
+		got := MoveElementToEnd(arr, toMove)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+	t.Run("Large array with many numbers", func(t *testing.T) {
+		arr := []int{5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12}
+		toMove := 5
+
+		want := []int{12, 11, 10, 9, 8, 7, 1, 2, 3, 4, 6, 5, 5, 5, 5, 5, 5}
+		got := MoveElementToEnd(arr, toMove)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+	t.Run("Outlier for pointer values", func(t *testing.T) {
+		arr := []int{2, 4, 2, 5, 6, 2, 2}
+		toMove := 2
+
+		want := []int{6, 4, 5, 2, 2, 2, 2}
+		got := MoveElementToEnd(arr, toMove)
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("Wanted %v, got %v", want, got)
