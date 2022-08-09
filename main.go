@@ -523,3 +523,23 @@ func IsMonotonic(array []int) bool {
 	}
 	return true
 }
+
+func SpiralTraverse(array [][]int) []int {
+	arr := []int{}
+	startRow, endRow, startCol, endCol := 0, len(array)-1, 0, len(array[0])-1
+	for startRow <= endRow && startCol <= endCol {
+		for i := startCol; i <= endCol; i++ {
+			arr = append(arr, array[startRow][i])
+		}
+	}
+
+	return arr
+}
+
+// row[0]col[0][1][2][3]
+// col[3]row[1][2][3]
+// row[3]col[2][1][0]
+// col[0]row[2][1]
+// row[1]col[1][2]
+// col[2]row[2]
+// row[2]col[1]

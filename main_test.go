@@ -709,3 +709,20 @@ func TestIsMonotonic(t *testing.T) {
 		}
 	})
 }
+func TestSpiralTraverse(t *testing.T) {
+	t.Run("Spiral of incrementing numbers", func(t *testing.T) {
+		array := [][]int{
+			[]int{1, 2, 3, 4},
+			[]int{12, 13, 14, 5},
+			[]int{11, 16, 15, 6},
+			[]int{10, 9, 8, 7},
+		}
+
+		want := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+		got := SpiralTraverse(array)
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("Wanted %v, got %v", want, got)
+		}
+	})
+}
