@@ -497,3 +497,37 @@ func MoveElementToEnd(array []int, toMove int) []int {
 
 	}
 }
+
+func IsMonotonic(array []int) bool {
+	if len(array) <= 1 {
+		return true
+	}
+	base := 0
+	count := 1
+	neg := true
+	pos := true
+
+	for i := 0; i <= len(array)-2; i++ {
+		if array[i] == array[i+1] {
+			base++
+			count++
+			continue
+		} else if array[i] <= array[i+1] {
+			base++
+			count++
+			neg = true
+			pos = false
+		} else if array[i] >= array[i+1] {
+			base++
+			count++
+			neg = false
+			pos = true
+		}
+	}
+	if neg == true && pos == false {
+		return true
+	} else if neg == false && pos == true {
+		return true
+	}
+	return false
+}

@@ -656,3 +656,56 @@ func TestMoveElementToEnd(t *testing.T) {
 		}
 	})
 }
+
+func TestIsMonotonic(t *testing.T) {
+	t.Run("Correct monotonic array with negative numbers", func(t *testing.T) {
+		arr := []int{-1, -5, -10, -1100, -1100, -1101, -1102, -9001}
+
+		want := true
+		got := IsMonotonic(arr)
+
+		if want != got {
+			t.Errorf("Wanted %t, got %t", want, got)
+		}
+	})
+	t.Run("Empty array", func(t *testing.T) {
+		arr := []int{}
+
+		want := true
+		got := IsMonotonic(arr)
+
+		if want != got {
+			t.Errorf("Wanted %t, got %t", want, got)
+		}
+	})
+	t.Run("Array with a length of one", func(t *testing.T) {
+		arr := []int{1}
+
+		want := true
+		got := IsMonotonic(arr)
+
+		if want != got {
+			t.Errorf("Wanted %t, got %t", want, got)
+		}
+	})
+	t.Run("Repeating array of the same number", func(t *testing.T) {
+		arr := []int{1, 1, 1, 1, 1, 1}
+
+		want := true
+		got := IsMonotonic(arr)
+
+		if want != got {
+			t.Errorf("Wanted %t, got %t", want, got)
+		}
+	})
+	t.Run("Incorrect monotonic array with negative numbers", func(t *testing.T) {
+		arr := []int{-1, -5, -10, -1100, -900, -1101, -1102, -9001}
+
+		want := false
+		got := IsMonotonic(arr)
+
+		if want != got {
+			t.Errorf("Wanted %t, got %t", want, got)
+		}
+	})
+}
