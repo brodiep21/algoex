@@ -272,6 +272,7 @@ func IsPalindrome(str string) bool {
 	return false
 }
 
+// ----check here
 // func IsPalindrome(str string) bool {
 // 	if len(str) == 1 {
 // 		return true

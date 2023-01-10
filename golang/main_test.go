@@ -14,7 +14,6 @@ func TestAdder(t *testing.T) {
 	if want != have {
 		t.Errorf("Have %v, want %v", have, want)
 	}
-
 }
 
 func TestSum(t *testing.T) {
